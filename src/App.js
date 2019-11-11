@@ -71,6 +71,7 @@ class App extends Component {
       <div className="App">
         <Navbar inCart={this.state.inCart}></Navbar>
         <Switch>
+          <Redirect exact from="/" to="/products" />
           <Route
             path="/products"
             render={props => (
