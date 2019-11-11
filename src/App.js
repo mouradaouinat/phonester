@@ -4,7 +4,7 @@ import "font-awesome/css/font-awesome.min.css";
 import Navbar from "./components/navbar";
 import Products from "./components/products";
 import { storeProducts } from "./data";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Cart from "./components/cart";
 import ProductDetail from "./components/productDetails";
 
