@@ -49,7 +49,7 @@ h1 {
 }
 
 .mr-micro {
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .mb-1 {
@@ -300,3 +300,134 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+/* =================================================*   
+ *                                                  *  
+ *   MEDIA QUERIES                                  *
+ *                                                  *
+ * =================================================*/
+
+/* Extra small devices (phones, 600px and down) */
+/* @media only screen and (max-width: 600px) {...} */
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* @media only screen and (min-width: 600px) {...} */
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 600px) {
+  .inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .container {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    margin: 5px auto;
+  }
+
+  .navbar {
+    height: auto;
+  }
+
+  .navbar-elements {
+    margin: 10px auto;
+  }
+
+  .search-input {
+    width: 80px;
+  }
+
+  .products-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .product-page {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-image-big {
+    margin: 20px auto;
+  }
+
+  .product-image-big img {
+    margin: 20px auto;
+    width: 310px;
+  }
+
+  .product-card {
+    margin: 20px auto;
+  }
+
+  .checkout {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .checkout-product {
+    width: auto;
+  }
+
+  .checkout-card {
+    width: auto;
+  }
+
+  .btn-secondary {
+    padding: 8px 20px;
+  }
+
+  .btn-danger-outline {
+    padding: 8px 20px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    max-width: 740px;
+  }
+
+  .product-image-big {
+    margin: 20px auto;
+  }
+
+  .product-image-big img {
+    margin: 20px auto;
+  }
+
+  .checkout {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+  }
+
+  .checkout-card {
+    margin: 20px auto;
+  }
+
+  .checkout-product {
+    margin: 20px auto;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 1024px) {
+  .container {
+    max-width: 992px;
+    margin: auto;
+  }
+
+  .product-card {
+    width: 300px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* @media only screen and (min-width: 1200px) {...} */

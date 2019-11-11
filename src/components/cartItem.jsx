@@ -12,11 +12,14 @@ const CartItem = ({ item, onRemove, onIncrement, onDecrement }) => {
         <p className="mb-micro inline">
           Quantity:<span className="badge mr-micro">{item.count}</span>
         </p>
-        <button className="btn-plus" onClick={() => onIncrement(item.id)}>
+        <button
+          className="btn-plus mr-micro"
+          onClick={() => onIncrement(item.id)}
+        >
           +
         </button>
         <button
-          className="btn-minus mr-micro mb-micro"
+          className="btn-minus mb-micro"
           onClick={() => onDecrement(item.id)}
         >
           -
