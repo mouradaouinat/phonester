@@ -1,6 +1,6 @@
 import React from "react";
 
-const CartItem = ({ item, onRemove }) => {
+const CartItem = ({ item, onRemove, onIncrement, onDecrement }) => {
   return (
     <div className="checkout-product mb-2">
       <div className="chechout-product-img">
@@ -12,9 +12,15 @@ const CartItem = ({ item, onRemove }) => {
         <p className="mb-micro inline">
           Quantity:<span className="badge mr-micro">{item.count}</span>
         </p>
-        <button className="btn-plus">+</button>
-        <button className="btn-minus mr-micro mb-micro">-</button>
-
+        <button className="btn-plus" onClick={() => onIncrement(item.id)}>
+          +
+        </button>
+        <button
+          className="btn-minus mr-micro mb-micro"
+          onClick={() => onDecrement(item.id)}
+        >
+          -
+        </button>
         <button className="btn-danger" onClick={() => onRemove(item.id)}>
           Remove
         </button>

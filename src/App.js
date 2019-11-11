@@ -37,6 +37,35 @@ class App extends Component {
     this.setState({ inCart });
   };
 
+  handleIncrement = id => {
+    const product = this.state.inCart.find(product => product.id === id);
+    product.count += 1;
+    let inCart = [...this.state.inCart];
+    this.setState({ inCart });
+  };
+
+  handleDecrement = id => {
+    const product = this.state.inCart.find(product => product.id === id);
+    if (product.count === 1) {
+      product.inCart = false;
+      product.count = 0;
+      let inCart = [...this.state.inCart];
+      inCart = this.state.products.filter(product => product.inCart === true);
+      this.setState({ inCart });
+    } else {
+      product.count -= 1;
+      let inCart = [...this.state.inCart];
+      this.setState({ inCart });
+    }
+  };
+
+  handleClear = () => {
+    let inCart = [...this.state.inCart];
+    inCart.map(product => this.handleRemove(product.id));
+    inCart = [];
+    this.setState({ inCart });
+  };
+
   render() {
     return (
       <div className="App">
@@ -60,6 +89,9 @@ class App extends Component {
                 {...props}
                 cartItems={this.state.inCart}
                 onRemove={this.handleRemove}
+                onIncrement={this.handleIncrement}
+                onDecrement={this.handleDecrement}
+                onClear={this.handleClear}
               ></Cart>
             )}
           ></Route>
