@@ -6,13 +6,8 @@ export const Wrapper = styled.div`
   max-width: 1024px;
   margin: 100px auto;
 
-  @media only screen and (max-width: 600px) {
-    width: 500px;
-    margin: 0 auto;
-  }
-
   @media only screen and (max-width: 768px) {
-    max-width: 720px;
+    max-width: 740px;
     margin-top: 70px;
   }
 

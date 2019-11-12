@@ -28,17 +28,15 @@ const CheckoutProductImg = styled.div`
   }
 `;
 
+const InlineP = styled.p`
+  display: inline;
+`;
+
 const CheckoutProductInfo = styled.div`
   display: inline-block;
 
   p {
     margin-bottom: 20px;
-
-    ${props =>
-      props.inline &&
-      css`
-        display: inline;
-      `};
   }
 `;
 
@@ -61,9 +59,9 @@ const CartItem = ({ item, onRemove, onIncrement, onDecrement }) => {
       <CheckoutProductInfo>
         <p>{item.title}</p>
         <p>Price: ${item.price}</p>
-        <p inline>
+        <InlineP>
           Quantity:<Badge>{item.count}</Badge>
-        </p>
+        </InlineP>
         <Button plus onClick={() => onIncrement(item.id)}>
           +
         </Button>
