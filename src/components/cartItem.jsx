@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Button } from "./productCard";
 
 const CheckoutProduct = styled.div`
@@ -11,8 +11,7 @@ const CheckoutProduct = styled.div`
   margin-bottom: 40px;
 
   @media only screen and (max-width: 768px) {
-    margin: 20px auto;
-    width: 400px;
+    width: 300px;
   }
 
   @media only screen and (max-width: 1024px) {
