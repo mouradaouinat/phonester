@@ -20,12 +20,6 @@ a {
   color: rgb(235, 235, 235);
 }
 
-@media only screen and (max-width: 600px) {
-  .checkout-product {
-    width: auto;
-  }
-}
-
 @media only screen and (max-width: 768px) {
   body {
     overflow-x: hidden;
