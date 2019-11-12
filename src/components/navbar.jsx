@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const Logo = styled.div`
   font-family: "Maven Pro", sans-serif;
@@ -49,6 +49,7 @@ const NavElements = styled.ul`
 const ListItems = styled.li`
   list-style: none;
   position: relative;
+  margin-left: 10px;
 `;
 
 const Search = styled.div`
@@ -103,6 +104,25 @@ const BurgerLine = styled.div`
   background-color: cornsilk;
   margin: 4px;
   border-radius: 10px;
+  transform-origin: 1px;
+  transition: 0.4s all ease;
+
+  :first-child {
+    transform: ${({ open }) =>
+      open ? "rotate(45deg)" : "rotate(0) translate(0, 0)"};
+    transition: 0.4s all ease;
+  }
+
+  :nth-child(2) {
+    opacity: ${({ open }) => (open ? "0" : "1")};
+    transition: 0.4s all ease;
+  }
+
+  :nth-child(3) {
+    transform: ${({ open }) =>
+      open ? "rotate(-45deg)" : "rotate(0) translate(0, 0)"};
+    transition: 0.4s all ease;
+  }
 `;
 
 class Navbar extends Component {
@@ -143,9 +163,9 @@ class Navbar extends Component {
           </ListItems>
         </NavElements>
         <Burger onClick={this.handleToggle}>
-          <BurgerLine></BurgerLine>
-          <BurgerLine></BurgerLine>
-          <BurgerLine></BurgerLine>
+          <BurgerLine open={this.state.open}></BurgerLine>
+          <BurgerLine open={this.state.open}></BurgerLine>
+          <BurgerLine open={this.state.open}></BurgerLine>
         </Burger>
       </Nav>
     );
