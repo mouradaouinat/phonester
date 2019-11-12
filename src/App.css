@@ -77,66 +77,13 @@ body {
 
 .container {
   max-width: 1024px;
-  margin: 0 auto;
+  margin: 100px auto;
 }
+/*
 
-.navbar {
-  height: 10vh;
-  padding: 15px 0;
-  color: #ffffff;
-  background-color: #050024;
-  margin-bottom: 40px;
-}
 
-.inner {
-  display: flex;
-  justify-content: space-between;
-}
 
-.logo {
-  margin-top: 6px;
-  font-family: "Maven Pro", sans-serif;
-  font-weight: 900;
-  font-size: 20px;
-}
-
-.navbar-elements {
-  margin-left: auto;
-}
-
-.search {
-  display: inline-block;
-  border: 1px solid black;
-  padding: 5px 10px;
-  border-radius: 20px;
-  clear: both;
-  margin-right: 8px;
-  background: #ffffff;
-}
-
-.search-input {
-  border: none;
-  font-size: 16px;
-}
-
-.search-button {
-  background: transparent;
-  border: none;
-  font-size: 16px;
-  color: rgb(78, 78, 78);
-}
-
-.products-nav {
-  float: right;
-  margin-top: 5px;
-}
-
-.link-item {
-  list-style: none;
-  display: inline-block;
-  margin-right: 6px;
-}
-
+*/
 .badge {
   background-color: #ffbd3e;
   border: 1px solid rgb(43, 43, 43);
@@ -153,6 +100,7 @@ body {
   display: flex;
   /* justify-content: space-around; */
   flex-wrap: wrap;
+  margin-top: 100px;
 }
 
 .product-card {
@@ -301,6 +249,19 @@ body {
   justify-content: space-between;
 }
 
+.burger {
+  opacity: 0;
+  width: 30px;
+  background: transparent;
+  border: none;
+  display: inline-block;
+  margin-left: auto;
+}
+
+.toggle {
+  opacity: 0;
+}
+
 /* =================================================*   
  *                                                  *  
  *   MEDIA QUERIES                                  *
@@ -319,6 +280,14 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .burger {
+    opacity: 1;
   }
 
   .container {
@@ -392,6 +361,26 @@ body {
 @media only screen and (max-width: 768px) {
   .container {
     max-width: 740px;
+    margin-top: 70px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .burger {
+    opacity: 1;
+    width: 20px;
+    background: transparent;
+    border: none;
+    display: inline;
+  }
+
+  .line {
+    width: 20px;
+    height: 2px;
+    background: #ffffff;
+    margin: 3px;
   }
 
   .product-image-big {
@@ -421,12 +410,16 @@ body {
 @media only screen and (max-width: 1024px) {
   .container {
     max-width: 992px;
-    margin: auto;
+    margin: 80px auto;
   }
 
   .product-card {
     width: 300px;
   }
+}
+
+.active {
+  transform: translateX(0);
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
