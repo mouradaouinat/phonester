@@ -72,10 +72,31 @@ class App extends Component {
     this.setState({ products });
   };
 
+  handleSearch = query => {
+    let currentList = [];
+    let newList = [];
+    if (query !== "") {
+      currentList = this.state.products;
+      newList = currentList.filter(item => {
+        const lc = item.title.toLowerCase();
+        const filter = query.toLowerCase();
+        return lc.startsWith(filter);
+      });
+    } else {
+      newList = storeProducts;
+    }
+    this.setState({
+      products: newList
+    });
+  };
+
   render() {
     return (
       <div className="App">
-        <Navbar inCart={this.state.inCart}></Navbar>
+        <Navbar
+          inCart={this.state.inCart}
+          onSearch={this.handleSearch}
+        ></Navbar>
         <Switch>
           <Redirect exact from="/" to="/products" />
           <Route

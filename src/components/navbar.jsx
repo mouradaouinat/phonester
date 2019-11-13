@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import SearchBox from "./SearchBox";
 
 const Logo = styled.div`
   font-family: "Maven Pro", sans-serif;
@@ -50,31 +51,6 @@ const ListItems = styled.li`
   list-style: none;
   position: relative;
   margin-left: 10px;
-`;
-
-const Search = styled.div`
-  display: inline-block;
-  border: 1px solid black;
-  padding: 5px 10px;
-  border-radius: 20px;
-  clear: both;
-  margin-right: 8px;
-  background: #ffffff;
-`;
-
-const SearchInput = styled.input`
-  border: none;
-  font-size: 16px;
-  display: inline;
-  width: 100px;
-`;
-
-const SearchButton = styled.button`
-  background: transparent;
-  border: none;
-  font-size: 16px;
-  color: rgb(78, 78, 78);
-  display: inline;
 `;
 
 const RedBadge = styled.span`
@@ -137,7 +113,7 @@ class Navbar extends Component {
   };
 
   render() {
-    const { inCart } = this.props;
+    const { inCart, onSearch, searchQuery } = this.props;
     return (
       <Nav>
         <Logo>
@@ -145,12 +121,7 @@ class Navbar extends Component {
         </Logo>
         <NavElements open={this.state.open}>
           <ListItems>
-            <Search>
-              <SearchInput type="text" name="search" placeholder="Search" />
-              <SearchButton>
-                <i className="fa fa-search"></i>
-              </SearchButton>
-            </Search>
+            <SearchBox value={searchQuery} onChange={onSearch}></SearchBox>
           </ListItems>
           <ListItems>
             <Link to="/products">Products</Link>
