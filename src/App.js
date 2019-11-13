@@ -7,6 +7,7 @@ import { storeProducts } from "./data";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Cart from "./components/cart";
 import ProductDetail from "./components/productDetails";
+import _ from "lodash";
 
 class App extends Component {
   state = {
@@ -66,6 +67,11 @@ class App extends Component {
     this.setState({ inCart });
   };
 
+  handleSort = e => {
+    const products = _.sortBy(this.state.products, e.currentTarget.value);
+    this.setState({ products });
+  };
+
   render() {
     return (
       <div className="App">
@@ -79,6 +85,7 @@ class App extends Component {
                 {...props}
                 products={this.state.products}
                 onAdd={this.handleAdd}
+                onSort={this.handleSort}
               ></Products>
             )}
           ></Route>
@@ -97,6 +104,7 @@ class App extends Component {
             )}
           ></Route>
           <Route
+            exact
             path="/:id"
             render={props => (
               <ProductDetail

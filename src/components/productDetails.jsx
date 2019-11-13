@@ -1,8 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "./productCard";
 import { Wrapper } from "./products";
+import { storeProducts } from "../data";
 
 const ProductPage = styled.div`
   display: flex;
@@ -69,38 +70,50 @@ const ProductDescription = styled.div`
   }
 `;
 
-const ProductDetail = ({ products, match, onAdd }) => {
-  const product = products.find(
-    product => product.id === parseInt(match.params.id)
-  );
-  return (
-    <Wrapper>
-      <ProductPage>
-        <ProductImgBig>
-          <img src={product.img} alt="google pixel black" />
-        </ProductImgBig>
-        <ProductDescription>
-          <h1>{product.title}</h1>
-          <h2>Price: ${product.price}</h2>
-          <h2>Description:</h2>
-          <p>{product.info}</p>
-          <Button
-            onClick={() => onAdd(product.id)}
-            disabled={product.inCart}
-            style={{ marginRight: "10px" }}
-          >
-            {product.inCart ? "Added " : "Add to Cart "}{" "}
-            <i className="fa fa-shopping-cart"></i>
-          </Button>
-          <Button outline>
-            <Link to="/products" style={{ color: "#ffbd3e" }}>
-              Continue shopping
-            </Link>
-          </Button>
-        </ProductDescription>
-      </ProductPage>
-    </Wrapper>
-  );
-};
+class ProductDetail extends Component {
+  state = {
+    product: {}
+  };
+
+  async componentDidMount() {
+    const product = await storeProducts.find(
+      product => product.id === parseInt(this.props.match.params.id)
+    );
+    this.setState({ product });
+  }
+
+  render() {
+    const { onAdd } = this.props;
+    const { product } = this.state;
+    return (
+      <Wrapper>
+        <ProductPage>
+          <ProductImgBig>
+            <img src={product.img} alt="google pixel black" />
+          </ProductImgBig>
+          <ProductDescription>
+            <h1>{product.title}</h1>
+            <h2>Price: ${product.price}</h2>
+            <h2>Description:</h2>
+            <p>{product.info}</p>
+            <Button
+              onClick={() => onAdd(product.id)}
+              disabled={product.inCart}
+              style={{ marginRight: "10px" }}
+            >
+              {product.inCart ? "Added " : "Add to Cart "}{" "}
+              <i className="fa fa-shopping-cart"></i>
+            </Button>
+            <Button outline>
+              <Link to="/products" style={{ color: "#ffbd3e" }}>
+                Continue shopping
+              </Link>
+            </Button>
+          </ProductDescription>
+        </ProductPage>
+      </Wrapper>
+    );
+  }
+}
 
 export default ProductDetail;

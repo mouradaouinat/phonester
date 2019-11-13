@@ -31,9 +31,32 @@ const ProductsList = styled.div`
   }
 `;
 
-const Products = ({ products, onAdd }) => {
+const SortBy = styled.div`
+  background-color: #ffbd3e;
+  display: inline-block;
+  border-radius: 60px;
+  padding: 10px 20px;
+
+  select {
+    border: none;
+    background-color: transparent;
+
+    &:focus {
+      outline: none;
+    }
+  }
+`;
+
+const Products = ({ products, onAdd, onSort }) => {
   return (
     <Wrapper>
+      <SortBy>
+        Sort By{" "}
+        <select onChange={onSort}>
+          <option value="price">Price</option>
+          <option value="title">Name</option>
+        </select>
+      </SortBy>
       <ProductsList>
         {products.map(product => (
           <ProductCard
