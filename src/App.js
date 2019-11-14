@@ -14,18 +14,7 @@ import Admin from "./components/admin";
 class App extends Component {
   state = {
     products: [],
-    inCart: [],
-    newProduct: {
-      id: "",
-      title: "",
-      img: "",
-      price: 0,
-      company: "",
-      info: "",
-      inCart: false,
-      count: 0,
-      total: 0
-    }
+    inCart: []
   };
 
   componentDidMount() {
@@ -105,14 +94,23 @@ class App extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const newProduct = this.state.newProduct;
-    const products = this.state.products;
+    let newProduct = {
+      id: "",
+      title: "",
+      img: "",
+      price: 0,
+      company: "",
+      info: "",
+      inCart: false,
+      count: 0,
+      total: 0
+    };
     newProduct.title = e.target.title.value;
     newProduct.price = e.target.price.value;
     newProduct.info = e.target.info.value;
     newProduct.id = uuid();
     newProduct.img = "img/new-product.jpg";
-    products.push(newProduct);
+    let products = [...this.state.products, newProduct];
     this.setState({ products });
   };
 

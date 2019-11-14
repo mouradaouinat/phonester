@@ -19,7 +19,17 @@ const FormControl = styled.div`
   textarea {
     display: block;
     margin-top: 10px;
+    margin-bottom: 20px;
   }
+`;
+
+const SubmitButton = styled.button`
+  border-radius: 5px;
+  background-color: #551ccf;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
 `;
 
 const ProductForm = ({ onSubmit }) => {
@@ -41,9 +51,11 @@ const ProductForm = ({ onSubmit }) => {
         </FormControl>
         <FormControl>
           <label>Product Description</label>
-          <textarea rows="6" cols="60"></textarea>
+          <textarea rows="6" cols="54" name="info"></textarea>
         </FormControl>
-        <button type="submit">add new</button>
+        <SubmitButton type="submit">
+          <i className="fa fa-plus-circle"></i> Add New
+        </SubmitButton>
       </form>
     </React.Fragment>
   );

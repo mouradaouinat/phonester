@@ -25,7 +25,7 @@ const SideNav = () => {
     <Navigation>
       <ul>
         <li>
-          <Link to="/">
+          <Link to="/admin">
             <i className="fa fa-home"></i> Home
           </Link>
         </li>
