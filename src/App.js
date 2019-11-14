@@ -3,12 +3,11 @@ import "./App.css";
 import "font-awesome/css/font-awesome.min.css";
 import Navbar from "./components/navbar";
 import Products from "./components/products";
-import { storeProducts } from "./data";
+import { getProducts } from "./data";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Cart from "./components/cart";
 import ProductDetail from "./components/productDetails";
 import _ from "lodash";
-import uuid from "uuid";
 import Admin from "./components/admin";
 
 class App extends Component {
@@ -18,7 +17,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const products = storeProducts;
+    const products = getProducts();
     this.setState({ products });
   }
 
@@ -85,33 +84,11 @@ class App extends Component {
         return lc.startsWith(filter);
       });
     } else {
-      newList = storeProducts;
+      newList = getProducts();
     }
     this.setState({
       products: newList
     });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    let newProduct = {
-      id: "",
-      title: "",
-      img: "",
-      price: 0,
-      company: "",
-      info: "",
-      inCart: false,
-      count: 0,
-      total: 0
-    };
-    newProduct.title = e.target.title.value;
-    newProduct.price = e.target.price.value;
-    newProduct.info = e.target.info.value;
-    newProduct.id = uuid();
-    newProduct.img = "img/new-product.jpg";
-    let products = [...this.state.products, newProduct];
-    this.setState({ products });
   };
 
   render() {
@@ -122,12 +99,7 @@ class App extends Component {
           onSearch={this.handleSearch}
         ></Navbar>
         <Switch>
-          <Route
-            path="/admin"
-            render={props => (
-              <Admin {...props} onSubmit={this.handleSubmit}></Admin>
-            )}
-          ></Route>
+          <Redirect exact from="/admin" to="/admin/home"></Redirect>
           <Route path="/admin/:topic" component={Admin}></Route>
           <Redirect exact from="/" to="/products" />
           <Route

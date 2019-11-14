@@ -25,6 +25,10 @@ const ProductPage = styled.div`
 const ProductImgBig = styled.div`
   margin-right: 100px;
 
+  img {
+    max-width: 400px;
+  }
+
   @media only screen and (max-width: 600px) {
     margin: 20px auto;
 
@@ -77,7 +81,7 @@ class ProductDetail extends Component {
 
   componentDidMount() {
     const product = storeProducts.find(
-      product => product.id === parseInt(this.props.match.params.id)
+      product => product.id === this.props.match.params.id
     );
     this.setState({ product });
   }

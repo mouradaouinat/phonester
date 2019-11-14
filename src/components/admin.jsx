@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import Orders from "./orders";
 import Stock from "./stock";
 import ProductForm from "./productForm";
+import AdminHome from "./adminHome";
 
 const Dashboard = styled.div`
   margin-top: 8vh;
@@ -24,19 +25,18 @@ const DashboardPage = styled.div`
   }
 `;
 
-const Admin = ({ onSubmit }) => {
+const Admin = () => {
   return (
     <Dashboard>
       <SideNav></SideNav>
       <DashboardPage>
         <Switch>
+          <Route path="/admin/home" component={AdminHome}></Route>
           <Route path="/admin/orders" component={Orders}></Route>
           <Route path="/admin/stock" component={Stock}></Route>
           <Route
             path="/admin/add-new"
-            render={props => (
-              <ProductForm {...props} onSubmit={onSubmit}></ProductForm>
-            )}
+            render={props => <ProductForm {...props}></ProductForm>}
           ></Route>
         </Switch>
       </DashboardPage>
