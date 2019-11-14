@@ -75,8 +75,8 @@ class ProductDetail extends Component {
     product: {}
   };
 
-  async componentDidMount() {
-    const product = await storeProducts.find(
+  componentDidMount() {
+    const product = storeProducts.find(
       product => product.id === parseInt(this.props.match.params.id)
     );
     this.setState({ product });
@@ -85,11 +85,12 @@ class ProductDetail extends Component {
   render() {
     const { onAdd } = this.props;
     const { product } = this.state;
+
     return (
       <Wrapper>
         <ProductPage>
           <ProductImgBig>
-            <img src={product.img} alt="google pixel black" />
+            <img src={product.img} alt={product.title} />
           </ProductImgBig>
           <ProductDescription>
             <h1>{product.title}</h1>

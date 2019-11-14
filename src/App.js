@@ -8,11 +8,24 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Cart from "./components/cart";
 import ProductDetail from "./components/productDetails";
 import _ from "lodash";
+import uuid from "uuid";
+import Admin from "./components/admin";
 
 class App extends Component {
   state = {
     products: [],
-    inCart: []
+    inCart: [],
+    newProduct: {
+      id: "",
+      title: "",
+      img: "",
+      price: 0,
+      company: "",
+      info: "",
+      inCart: false,
+      count: 0,
+      total: 0
+    }
   };
 
   componentDidMount() {
@@ -90,6 +103,19 @@ class App extends Component {
     });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    const newProduct = this.state.newProduct;
+    const products = this.state.products;
+    newProduct.title = e.target.title.value;
+    newProduct.price = e.target.price.value;
+    newProduct.info = e.target.info.value;
+    newProduct.id = uuid();
+    newProduct.img = "img/new-product.jpg";
+    products.push(newProduct);
+    this.setState({ products });
+  };
+
   render() {
     return (
       <div className="App">
@@ -98,6 +124,13 @@ class App extends Component {
           onSearch={this.handleSearch}
         ></Navbar>
         <Switch>
+          <Route
+            path="/admin"
+            render={props => (
+              <Admin {...props} onSubmit={this.handleSubmit}></Admin>
+            )}
+          ></Route>
+          <Route path="/admin/:topic" component={Admin}></Route>
           <Redirect exact from="/" to="/products" />
           <Route
             path="/products"

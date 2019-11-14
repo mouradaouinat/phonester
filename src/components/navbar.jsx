@@ -119,7 +119,11 @@ class Navbar extends Component {
         <Logo>
           <Link to="/products">phonester</Link>
         </Logo>
+
         <NavElements open={this.state.open}>
+          <ListItems>
+            <Link to="/admin">Admin</Link>
+          </ListItems>
           <ListItems>
             <SearchBox value={searchQuery} onChange={onSearch}></SearchBox>
           </ListItems>

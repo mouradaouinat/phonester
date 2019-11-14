@@ -40,6 +40,7 @@ const SortBy = styled.div`
   select {
     border: none;
     background-color: transparent;
+    cursor: pointer;
 
     &:focus {
       outline: none;
