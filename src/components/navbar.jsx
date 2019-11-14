@@ -37,8 +37,6 @@ const NavElements = styled.ul`
     right: 0px;
     top: 8vh;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
     width: 60%;
     height: 92vh;
     background-color: #050024;

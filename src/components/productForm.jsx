@@ -16,12 +16,20 @@ const FormControl = styled.div`
     width: 500px;
     height: 30px;
     margin-top: 10px;
+
+    @media only screen and (max-width: 768px) {
+      width: 300px;
+    }
   }
 
   textarea {
     display: block;
     margin-top: 10px;
     margin-bottom: 20px;
+
+    @media only screen and (max-width: 768px) {
+      width: 300px;
+    }
   }
 `;
 
@@ -55,7 +63,6 @@ class ProductForm extends Component {
     newProduct.id = uuid();
     newProduct.img = "img/new-product.jpg";
     saveProduct(newProduct);
-
     this.props.history.push("/");
   };
 

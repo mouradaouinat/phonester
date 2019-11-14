@@ -22,6 +22,10 @@ const DashboardPage = styled.div`
     font-weight: 300;
     color: #666;
     margin-bottom: 30px;
+
+    @media only screen and (max-width: 768px) {
+      font-size: 30px;
+    }
   }
 `;
 
