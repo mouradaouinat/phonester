@@ -120,12 +120,16 @@ export function getProduct(id) {
 export function saveProduct(product) {
   let productInDb = storeProducts.find(p => p.id === product.id) || {};
   productInDb.title = product.title;
-  productInDb.price = product.price;
+  productInDb.price = parseInt(product.price);
   productInDb.info = product.info;
   productInDb.company = product.company;
 
   if (!productInDb.id) {
     productInDb.id = Date.now().toString();
+  }
+
+  if (!productInDb.count) {
+    productInDb.count = 0;
   }
 
   if (!productInDb.img) {
