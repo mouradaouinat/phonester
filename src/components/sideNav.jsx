@@ -47,17 +47,7 @@ const SideNav = () => {
         </li>
         <li>
           <NavLink to={`/admin/stock`}>
-            <i className="fa fa-tags"></i> <Span>Manage Stock</Span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to={`/admin/orders`}>
-            <i className="fa fa-cart-arrow-down"></i> <Span>Orders</Span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to={`/admin/add-new`}>
-            <i className="fa fa-plus-circle"></i> <Span>Add new</Span>
+            <i className="fa fa-tags"></i> <Span>Products</Span>
           </NavLink>
         </li>
       </ul>

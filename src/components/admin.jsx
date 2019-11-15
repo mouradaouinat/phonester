@@ -22,6 +22,7 @@ const DashboardPage = styled.div`
     font-weight: 300;
     color: #666;
     margin-bottom: 30px;
+    display: inline-block;
 
     @media only screen and (max-width: 768px) {
       font-size: 30px;
@@ -29,7 +30,7 @@ const DashboardPage = styled.div`
   }
 `;
 
-const Admin = () => {
+const Admin = ({ products }) => {
   return (
     <Dashboard>
       <SideNav></SideNav>
@@ -37,7 +38,10 @@ const Admin = () => {
         <Switch>
           <Route path="/admin/home" component={AdminHome}></Route>
           <Route path="/admin/orders" component={Orders}></Route>
-          <Route path="/admin/stock" component={Stock}></Route>
+          <Route
+            path="/admin/stock"
+            render={props => <Stock {...props} products={products}></Stock>}
+          ></Route>
           <Route
             path="/admin/add-new"
             render={props => <ProductForm {...props}></ProductForm>}

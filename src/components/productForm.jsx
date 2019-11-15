@@ -63,7 +63,7 @@ class ProductForm extends Component {
     newProduct.id = uuid();
     newProduct.img = "img/new-product.jpg";
     saveProduct(newProduct);
-    this.props.history.push("/");
+    this.props.history.push("/admin/stock");
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -114,9 +114,7 @@ class ProductForm extends Component {
               name="info"
             ></textarea>
           </FormControl>
-          <SubmitButton type="submit">
-            <i className="fa fa-plus-circle"></i> Add New
-          </SubmitButton>
+          <SubmitButton type="submit">Save</SubmitButton>
         </form>
       </React.Fragment>
     );

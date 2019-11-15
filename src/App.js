@@ -99,7 +99,12 @@ class App extends Component {
         ></Navbar>
         <Switch>
           <Redirect exact from="/admin" to="/admin/home"></Redirect>
-          <Route path="/admin/:topic" component={Admin}></Route>
+          <Route
+            path="/admin/:topic"
+            render={props => (
+              <Admin {...props} products={this.state.products}></Admin>
+            )}
+          ></Route>
           <Redirect exact from="/" to="/products" />
           <Route
             path="/products"

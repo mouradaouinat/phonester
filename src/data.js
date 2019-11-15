@@ -122,7 +122,7 @@ export function saveProduct(product) {
   return storeProducts;
 }
 
-export function deleteMovie(id) {
+export function deleteProduct(id) {
   let productInDb = storeProducts.find(product => product.id === id);
   storeProducts.splice(storeProducts.indexOf(productInDb), 1);
   return productInDb;
