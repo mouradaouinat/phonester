@@ -84,10 +84,10 @@ class Stock extends Component {
     return (
       <React.Fragment>
         <h1>
-          <i className="fa fa-tags"></i> Products
+          <i className="fa fa-tags" aria-hidden="true"></i> Products
         </h1>
         <Button>
-          <Link to="/admin/add-new">
+          <Link to="/admin/new">
             <i className="fa fa-plus-circle"></i> Add New
           </Link>
         </Button>
@@ -120,7 +120,9 @@ class Stock extends Component {
                   <td>{product.info.substring(0, 30)}...</td>
                   <td>
                     <Button edit>
-                      Edit <i className="fa fa-edit"></i>
+                      <Link to={`/admin/${product.id}`}>
+                        Edit <i className="fa fa-edit"></i>
+                      </Link>
                     </Button>
                   </td>
                   <td>

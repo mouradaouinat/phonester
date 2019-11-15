@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import "font-awesome/css/font-awesome.min.css";
+import "font-awesome/css/font-awesome.css";
 import Navbar from "./components/navbar";
 import Products from "./components/products";
 import { getProducts } from "./data";

@@ -118,8 +118,23 @@ export function getProduct(id) {
 }
 
 export function saveProduct(product) {
-  storeProducts.push(product);
-  return storeProducts;
+  let productInDb = storeProducts.find(p => p.id === product.id) || {};
+  productInDb.title = product.title;
+  productInDb.price = product.price;
+  productInDb.info = product.info;
+  productInDb.company = product.company;
+
+  if (!productInDb.id) {
+    productInDb.id = Date.now().toString();
+  }
+
+  if (!productInDb.img) {
+    productInDb.img = "img/new-product.jpg";
+    storeProducts.push(productInDb);
+  }
+
+  // storeProducts.push(product);
+  // return storeProducts;
 }
 
 export function deleteProduct(id) {

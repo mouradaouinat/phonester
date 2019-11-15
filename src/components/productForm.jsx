@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { saveProduct } from "../data";
-import uuid from "uuid";
+import { saveProduct, getProduct } from "../data";
 
 const FormControl = styled.div`
   margin-bottom: 10px;
@@ -57,11 +56,29 @@ class ProductForm extends Component {
     }
   };
 
+  componentDidMount() {
+    const productId = this.props.match.params.id;
+    if (productId === "new") return;
+
+    const product = getProduct(productId);
+    if (!product) return this.props.history.replace("/not-found");
+
+    this.setState({ newProduct: this.mapToViewModel(product) });
+  }
+
+  mapToViewModel(product) {
+    return {
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      company: product.company,
+      info: product.info
+    };
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     let newProduct = { ...this.state.newProduct };
-    newProduct.id = uuid();
-    newProduct.img = "img/new-product.jpg";
     saveProduct(newProduct);
     this.props.history.push("/admin/stock");
   };
@@ -75,7 +92,11 @@ class ProductForm extends Component {
   render() {
     return (
       <React.Fragment>
-        <h1>Add New Product</h1>
+        <h1>
+          {this.props.match.params.id === "new"
+            ? "Add New Product"
+            : "Edit Product"}
+        </h1>
         <form onSubmit={this.handleSubmit}>
           <FormControl>
             <label>Product's Title</label>

@@ -43,7 +43,7 @@ const Admin = ({ products }) => {
             render={props => <Stock {...props} products={products}></Stock>}
           ></Route>
           <Route
-            path="/admin/add-new"
+            path="/admin/:id"
             render={props => <ProductForm {...props}></ProductForm>}
           ></Route>
         </Switch>
