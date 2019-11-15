@@ -17,8 +17,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const products = getProducts();
-    this.setState({ products });
+    this.setState({ products: getProducts() });
   }
 
   handleAdd = id => {

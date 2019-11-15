@@ -83,9 +83,7 @@ class Stock extends Component {
     const products = paginate(allProducts, currentPage, pageSize);
     return (
       <React.Fragment>
-        <h1>
-          <i className="fa fa-tags" aria-hidden="true"></i> Products
-        </h1>
+        <h1>Products</h1>
         <Button>
           <Link to="/admin/new">
             <i className="fa fa-plus-circle"></i> Add New

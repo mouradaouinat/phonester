@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import SideNav from "./sideNav";
 import { Switch, Route } from "react-router-dom";
-import Orders from "./orders";
 import Stock from "./stock";
 import ProductForm from "./productForm";
 import AdminHome from "./adminHome";
@@ -37,7 +36,6 @@ const Admin = ({ products }) => {
       <DashboardPage>
         <Switch>
           <Route path="/admin/home" component={AdminHome}></Route>
-          <Route path="/admin/orders" component={Orders}></Route>
           <Route
             path="/admin/stock"
             render={props => <Stock {...props} products={products}></Stock>}
