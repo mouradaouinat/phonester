@@ -18,7 +18,7 @@ const FormControl = styled.div`
     margin-top: 10px;
 
     @media only screen and (max-width: 768px) {
-      width: 300px;
+      width: 250px;
     }
   }
 
@@ -28,7 +28,7 @@ const FormControl = styled.div`
     margin-bottom: 20px;
 
     @media only screen and (max-width: 768px) {
-      width: 300px;
+      width: 250px;
     }
   }
 `;

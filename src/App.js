@@ -68,8 +68,8 @@ class App extends Component {
     this.setState({ inCart });
   };
 
-  handleSort = e => {
-    const products = _.sortBy(this.state.products, e.currentTarget.value);
+  handleSort = ({ currentTarget: input }) => {
+    const products = _.sortBy(this.state.products, input.value);
     this.setState({ products });
   };
 
@@ -79,9 +79,8 @@ class App extends Component {
     if (query !== "") {
       currentList = this.state.products;
       newList = currentList.filter(item => {
-        const lc = item.title.toLowerCase();
-        const filter = query.toLowerCase();
-        return lc.startsWith(filter);
+        const regex = new RegExp(query, "ig");
+        return item.title.match(regex) || item.company.match(regex);
       });
     } else {
       newList = getProducts();
