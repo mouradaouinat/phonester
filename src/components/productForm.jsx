@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { saveProduct, getProduct } from "../data";
+import Joi from "joi-browser";
 
 const FormControl = styled.div`
   margin-bottom: 10px;
@@ -53,7 +54,45 @@ class ProductForm extends Component {
       inCart: false,
       count: 0,
       total: 0
-    }
+    },
+    errors: {}
+  };
+
+  validate = () => {
+    const options = { abortEarly: false };
+    const { error } = Joi.validate(this.state.newProduct, this.schema, options);
+    if (!error) return null;
+
+    const errors = {};
+    for (let item of error.details) errors[item.path[0]] = item.message;
+    return errors;
+  };
+
+  validateProperty = ({ name, value }) => {
+    const obj = { [name]: value };
+    const schema = { [name]: this.schema[name] };
+    const { error } = Joi.validate(obj, schema);
+    return error ? error.details[0].message : null;
+  };
+
+  schema = {
+    title: Joi.string()
+      .required()
+      .label("Product's Title"),
+    price: Joi.number()
+      .required()
+      .label("Product's Price"),
+    company: Joi.string()
+      .required()
+      .label("Product's Company Name"),
+    info: Joi.string()
+      .required()
+      .label("Product Description"),
+    id: Joi.string().allow(""),
+    img: Joi.string().allow(""),
+    count: Joi.number(),
+    inCart: Joi.boolean(),
+    total: Joi.number()
   };
 
   componentDidMount() {
@@ -79,6 +118,10 @@ class ProductForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     let newProduct = { ...this.state.newProduct };
+    const errors = this.validate();
+    this.setState({ errors: errors || {} });
+    console.log(errors);
+    if (errors) return;
     saveProduct(newProduct);
     this.props.history.push("/admin/stock");
   };
@@ -90,6 +133,7 @@ class ProductForm extends Component {
   };
 
   render() {
+    const { errors } = this.state;
     return (
       <React.Fragment>
         <h1>
@@ -105,6 +149,7 @@ class ProductForm extends Component {
               value={this.state.newProduct.title}
               type="text"
               name="title"
+              error={errors.title}
             />
           </FormControl>
           <FormControl>
@@ -114,6 +159,7 @@ class ProductForm extends Component {
               value={this.state.newProduct.price}
               type="text"
               name="price"
+              error={errors.price}
             />
           </FormControl>
           <FormControl>
@@ -123,6 +169,7 @@ class ProductForm extends Component {
               value={this.state.newProduct.company}
               type="text"
               name="company"
+              error={errors.company}
             />
           </FormControl>
           <FormControl>
@@ -133,6 +180,7 @@ class ProductForm extends Component {
               rows="6"
               cols="54"
               name="info"
+              error={errors.info}
             ></textarea>
           </FormControl>
           <SubmitButton type="submit">Save</SubmitButton>

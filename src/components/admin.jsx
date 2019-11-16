@@ -29,13 +29,30 @@ const DashboardPage = styled.div`
   }
 `;
 
-const Admin = ({ products }) => {
+const Admin = ({
+  products,
+  onLogoChange,
+  logo,
+  onLogoColorChange,
+  logoColor
+}) => {
   return (
     <Dashboard>
       <SideNav></SideNav>
       <DashboardPage>
         <Switch>
-          <Route path="/admin/home" component={AdminHome}></Route>
+          <Route
+            path="/admin/home"
+            render={props => (
+              <AdminHome
+                {...props}
+                onLogoChange={onLogoChange}
+                onLogoColorChange={onLogoColorChange}
+                logo={logo}
+                logoColor={logoColor}
+              ></AdminHome>
+            )}
+          ></Route>
           <Route
             path="/admin/stock"
             render={props => <Stock {...props} products={products}></Stock>}

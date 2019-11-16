@@ -111,11 +111,13 @@ class Navbar extends Component {
   };
 
   render() {
-    const { inCart, onSearch, searchQuery } = this.props;
+    const { inCart, onSearch, searchQuery, logo, logoColor } = this.props;
     return (
       <Nav>
         <Logo>
-          <Link to="/products">phonester</Link>
+          <Link to="/products" style={{ color: logoColor }}>
+            {logo}
+          </Link>
         </Logo>
 
         <NavElements open={this.state.open}>

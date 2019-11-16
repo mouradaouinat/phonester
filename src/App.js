@@ -13,7 +13,9 @@ import Admin from "./components/admin";
 class App extends Component {
   state = {
     products: [],
-    inCart: []
+    inCart: [],
+    logo: "phonester",
+    logoColor: "#fff"
   };
 
   componentDidMount() {
@@ -89,19 +91,36 @@ class App extends Component {
     });
   };
 
+  handleLogoChange = ({ currentTarget: input }) => {
+    this.setState({ logo: input.value });
+  };
+
+  handleLogoColorChange = ({ currentTarget: input }) => {
+    this.setState({ logoColor: input.value });
+  };
+
   render() {
     return (
       <div className="App">
         <Navbar
           inCart={this.state.inCart}
           onSearch={this.handleSearch}
+          logo={this.state.logo}
+          logoColor={this.state.logoColor}
         ></Navbar>
         <Switch>
           <Redirect exact from="/admin" to="/admin/home"></Redirect>
           <Route
             path="/admin/:topic"
             render={props => (
-              <Admin {...props} products={this.state.products}></Admin>
+              <Admin
+                {...props}
+                products={this.state.products}
+                onLogoChange={this.handleLogoChange}
+                onLogoColorChange={this.handleLogoColorChange}
+                logoColor={this.state.logoColor}
+                logo={this.state.logo}
+              ></Admin>
             )}
           ></Route>
           <Redirect exact from="/" to="/products" />
