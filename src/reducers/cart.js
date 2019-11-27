@@ -1,5 +1,5 @@
 import { getProducts } from "../data";
-const products = getProducts();
+let products = getProducts();
 
 const cartReducer = (state = [], { type, payload }) => {
   const product = products.find(product => product.id === payload);

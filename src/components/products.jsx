@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductCard from "./productCard";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-// import { sort } from "../actions";
+import { sort } from "../actions";
 
 export const Wrapper = styled.div`
   max-width: 1024px;
@@ -51,12 +51,14 @@ const SortBy = styled.div`
 `;
 
 const Products = () => {
-  const products = useSelector(state => state.products);
+  let products = useSelector(state => state.products);
+  const dispatch = useDispatch();
+
   return (
     <Wrapper>
       <SortBy>
         Sort By{" "}
-        <select>
+        <select onChange={() => dispatch(sort)}>
           <option value="price">Price</option>
           <option value="title">Name</option>
         </select>

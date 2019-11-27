@@ -3,23 +3,16 @@ import "./App.css";
 import "font-awesome/css/font-awesome.css";
 import Navbar from "./components/navbar";
 import Products from "./components/products";
-import { getProducts } from "./data";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Cart from "./components/cart";
 import ProductDetail from "./components/productDetails";
-import _ from "lodash";
 import Admin from "./components/admin";
 
 class App extends Component {
   state = {
-    products: [],
     logo: "phonester",
     logoColor: "#fff"
   };
-
-  componentDidMount() {
-    this.setState({ products: getProducts() });
-  }
 
   handleLogoChange = ({ currentTarget: input }) => {
     this.setState({ logo: input.value });
@@ -64,11 +57,7 @@ class App extends Component {
               ></Products>
             )}
           ></Route>
-          <Route
-            exact
-            path="/cart"
-            render={props => <Cart {...props}></Cart>}
-          ></Route>
+          <Route exact path="/cart" component={Cart}></Route>
           <Route
             exact
             path="/:id"

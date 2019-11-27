@@ -63,7 +63,7 @@ const Checkout = () => {
       </Splitter>
       <Splitter>
         <Button secondary>Checkout</Button>
-        <Button dangerOutline onClick={dispatch(clear)}>
+        <Button dangerOutline onClick={() => dispatch(clear)}>
           Clear Cart
         </Button>
       </Splitter>

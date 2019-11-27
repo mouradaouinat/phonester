@@ -121,6 +121,8 @@ export const Button = styled.button`
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
+
+  
   return (
     <Card>
       <CardTitle>{product.title}</CardTitle>
@@ -134,7 +136,7 @@ const ProductCard = ({ product }) => {
         onClick={() => dispatch(add(product.id))}
         disabled={product.inCart}
       >
-        {product.inCart ? "Added " : "Add to Cart "}
+        {product.inCart === true ? "Added " : "Add to Cart "}
         <i className="fa fa-shopping-cart"></i>
       </Button>
     </Card>

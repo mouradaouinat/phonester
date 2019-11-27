@@ -4,9 +4,10 @@ let products = getProducts();
 
 const productsReducer = (state = [], { type, payload }) => {
   switch (type) {
-    case "SORT_PRODUCTS":
-      products = _.sortBy(state, payload.value);
-      return (state = products);
+    case "ADD_TO_CART":
+      return state;
+    case "REMOVE_FROM_CART":
+      return state;
     default:
       return (state = products);
   }
