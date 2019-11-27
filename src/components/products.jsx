@@ -54,6 +54,10 @@ const Products = () => {
   let products = useSelector(state => state.products);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    console.log("render");
+  });
+
   return (
     <Wrapper>
       <SortBy>

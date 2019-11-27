@@ -2,14 +2,14 @@ import { getProducts } from "../data";
 import _ from "lodash";
 let products = getProducts();
 
-const productsReducer = (state = [], { type, payload }) => {
+const productsReducer = (state = products, { type }) => {
   switch (type) {
     case "ADD_TO_CART":
-      return state;
+      return [...state];
     case "REMOVE_FROM_CART":
-      return state;
+      return [...state];
     default:
-      return (state = products);
+      return state;
   }
 };
 
