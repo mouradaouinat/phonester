@@ -30,11 +30,8 @@ export const clear = {
   type: "CLEAR_CART"
 };
 
-export const sort = ({ currentTarget: input }) => {
-  return {
-    type: "SORT_PRODUCTS",
-    payload: input
-  };
+export const sort = {
+  type: "SORT_PRODUCTS"
 };
 
 const search = {

@@ -8,6 +8,8 @@ const productsReducer = (state = products, { type }) => {
       return [...state];
     case "REMOVE_FROM_CART":
       return [...state];
+    case "SORT_PRODUCTS":
+      return [...state];
     default:
       return state;
   }
