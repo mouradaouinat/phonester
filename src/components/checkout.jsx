@@ -1,6 +1,8 @@
 import React from "react";
 import { Button } from "./productCard";
 import styled, { css } from "styled-components";
+import { clear } from "../actions";
+import { useSelector, useDispatch } from "react-redux";
 
 const CheckoutCard = styled.div`
   width: 400px;
@@ -35,8 +37,11 @@ const Grey = styled.span`
   color: #777;
 `;
 
-const Checkout = ({ cartItems, onClear }) => {
-  const total = cartItems.reduce((acc, item) => {
+const Checkout = () => {
+  const dispatch = useDispatch();
+  const cart = useSelector(state => state.inCart);
+
+  const total = cart.reduce((acc, item) => {
     return acc + item.price * item.count;
   }, 0);
   const tax = (total * 0.2).toFixed(2);
@@ -58,7 +63,7 @@ const Checkout = ({ cartItems, onClear }) => {
       </Splitter>
       <Splitter>
         <Button secondary>Checkout</Button>
-        <Button dangerOutline onClick={onClear}>
+        <Button dangerOutline onClick={dispatch(clear)}>
           Clear Cart
         </Button>
       </Splitter>

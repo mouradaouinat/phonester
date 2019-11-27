@@ -13,7 +13,6 @@ import Admin from "./components/admin";
 class App extends Component {
   state = {
     products: [],
-    inCart: [],
     logo: "phonester",
     logoColor: "#fff"
   };
@@ -21,75 +20,6 @@ class App extends Component {
   componentDidMount() {
     this.setState({ products: getProducts() });
   }
-
-  handleAdd = id => {
-    const product = this.state.products.find(product => product.id === id);
-    product.inCart = true;
-    product.count += 1;
-    let inCart = [...this.state.inCart];
-    inCart = this.state.products.filter(product => product.inCart === true);
-    this.setState({ inCart });
-  };
-
-  handleRemove = id => {
-    const product = this.state.products.find(product => product.id === id);
-    product.inCart = false;
-    product.count = 0;
-    let inCart = [...this.state.inCart];
-    inCart = this.state.products.filter(product => product.inCart === true);
-    this.setState({ inCart });
-  };
-
-  handleIncrement = id => {
-    const product = this.state.inCart.find(product => product.id === id);
-    product.count += 1;
-    let inCart = [...this.state.inCart];
-    this.setState({ inCart });
-  };
-
-  handleDecrement = id => {
-    const product = this.state.inCart.find(product => product.id === id);
-    if (product.count === 1) {
-      product.inCart = false;
-      product.count = 0;
-      let inCart = [...this.state.inCart];
-      inCart = this.state.products.filter(product => product.inCart === true);
-      this.setState({ inCart });
-    } else {
-      product.count -= 1;
-      let inCart = [...this.state.inCart];
-      this.setState({ inCart });
-    }
-  };
-
-  handleClear = () => {
-    let inCart = [...this.state.inCart];
-    inCart.map(product => this.handleRemove(product.id));
-    inCart = [];
-    this.setState({ inCart });
-  };
-
-  handleSort = ({ currentTarget: input }) => {
-    const products = _.sortBy(this.state.products, input.value);
-    this.setState({ products });
-  };
-
-  handleSearch = query => {
-    let currentList = [];
-    let newList = [];
-    if (query !== "") {
-      currentList = this.state.products;
-      newList = currentList.filter(item => {
-        const regex = new RegExp(query, "ig");
-        return item.title.match(regex) || item.company.match(regex);
-      });
-    } else {
-      newList = getProducts();
-    }
-    this.setState({
-      products: newList
-    });
-  };
 
   handleLogoChange = ({ currentTarget: input }) => {
     this.setState({ logo: input.value });
@@ -103,7 +33,6 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar
-          inCart={this.state.inCart}
           onSearch={this.handleSearch}
           logo={this.state.logo}
           logoColor={this.state.logoColor}
@@ -138,16 +67,7 @@ class App extends Component {
           <Route
             exact
             path="/cart"
-            render={props => (
-              <Cart
-                {...props}
-                cartItems={this.state.inCart}
-                onRemove={this.handleRemove}
-                onIncrement={this.handleIncrement}
-                onDecrement={this.handleDecrement}
-                onClear={this.handleClear}
-              ></Cart>
-            )}
+            render={props => <Cart {...props}></Cart>}
           ></Route>
           <Route
             exact

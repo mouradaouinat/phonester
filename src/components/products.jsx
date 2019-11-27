@@ -1,6 +1,8 @@
 import React from "react";
 import ProductCard from "./productCard";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+// import { sort } from "../actions";
 
 export const Wrapper = styled.div`
   max-width: 1024px;
@@ -48,23 +50,20 @@ const SortBy = styled.div`
   }
 `;
 
-const Products = ({ products, onAdd, onSort }) => {
+const Products = () => {
+  const products = useSelector(state => state.products);
   return (
     <Wrapper>
       <SortBy>
         Sort By{" "}
-        <select onChange={onSort}>
+        <select>
           <option value="price">Price</option>
           <option value="title">Name</option>
         </select>
       </SortBy>
       <ProductsList>
         {products.map(product => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            onAdd={onAdd}
-          ></ProductCard>
+          <ProductCard key={product.id} product={product}></ProductCard>
         ))}
       </ProductsList>
     </Wrapper>

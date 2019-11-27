@@ -3,6 +3,7 @@ import CartItem from "./cartItem";
 import Checkout from "./checkout";
 import { Wrapper } from "./products";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 
 const CheckoutPage = styled.div`
   display: flex;
@@ -30,22 +31,17 @@ const CheckoutPage = styled.div`
   }
 `;
 
-const Cart = ({ cartItems, onRemove, onIncrement, onDecrement, onClear }) => {
+const Cart = () => {
+  const cart = useSelector(state => state.inCart);
   return (
     <Wrapper>
       <CheckoutPage>
         <div>
-          {cartItems.map(item => (
-            <CartItem
-              key={item.id}
-              item={item}
-              onRemove={onRemove}
-              onIncrement={onIncrement}
-              onDecrement={onDecrement}
-            ></CartItem>
+          {cart.map(item => (
+            <CartItem key={item.id} item={item}></CartItem>
           ))}
         </div>
-        <Checkout cartItems={cartItems} onClear={onClear}></Checkout>
+        <Checkout cartItems={cart}></Checkout>
       </CheckoutPage>
     </Wrapper>
   );

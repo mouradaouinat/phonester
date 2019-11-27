@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import SearchBox from "./SearchBox";
+import { useSelector } from "react-redux";
 
 const Logo = styled.div`
   font-family: "Maven Pro", sans-serif;
@@ -99,52 +100,47 @@ const BurgerLine = styled.div`
   }
 `;
 
-class Navbar extends Component {
-  state = {
-    open: false
-  };
+const Navbar = props => {
+  const [toggle, setToggle] = useState(false);
+  const cart = useSelector(state => state.inCart);
+  const { onSearch, searchQuery, logo, logoColor } = props;
 
-  handleToggle = () => {
-    let open = this.state.open;
-    open = !open;
-    this.setState({ open });
-  };
-
-  render() {
-    const { inCart, onSearch, searchQuery, logo, logoColor } = this.props;
-    return (
-      <Nav>
-        <Logo>
-          <Link to="/products" style={{ color: logoColor }}>
-            {logo}
-          </Link>
-        </Logo>
-
-        <NavElements open={this.state.open}>
-          <ListItems>
-            <Link to="/admin">Admin</Link>
-          </ListItems>
-          <ListItems>
-            <SearchBox value={searchQuery} onChange={onSearch}></SearchBox>
-          </ListItems>
-          <ListItems>
-            <Link to="/products">Products</Link>
-          </ListItems>
-          <ListItems>
-            <Link to="/cart">
-              Cart <i className="fa fa-shopping-cart"></i>
-            </Link>
-            {inCart.length !== 0 && <RedBadge>{inCart.length}</RedBadge>}
-          </ListItems>
-        </NavElements>
-        <Burger onClick={this.handleToggle}>
-          <BurgerLine open={this.state.open}></BurgerLine>
-          <BurgerLine open={this.state.open}></BurgerLine>
-          <BurgerLine open={this.state.open}></BurgerLine>
-        </Burger>
-      </Nav>
-    );
+  function handleToggle() {
+    setToggle(!toggle);
   }
-}
+
+  return (
+    <Nav>
+      <Logo>
+        <Link to="/products" style={{ color: logoColor }}>
+          {logo}
+        </Link>
+      </Logo>
+
+      <NavElements open={toggle}>
+        <ListItems>
+          <Link to="/admin">Admin</Link>
+        </ListItems>
+        <ListItems>
+          <SearchBox value={searchQuery} onChange={onSearch}></SearchBox>
+        </ListItems>
+        <ListItems>
+          <Link to="/products">Products</Link>
+        </ListItems>
+        <ListItems>
+          <Link to="/cart">
+            Cart <i className="fa fa-shopping-cart"></i>
+          </Link>
+          {cart.length !== 0 && <RedBadge>{cart.length}</RedBadge>}
+        </ListItems>
+      </NavElements>
+      <Burger onClick={handleToggle}>
+        <BurgerLine open={toggle}></BurgerLine>
+        <BurgerLine open={toggle}></BurgerLine>
+        <BurgerLine open={toggle}></BurgerLine>
+      </Burger>
+    </Nav>
+  );
+};
 
 export default Navbar;

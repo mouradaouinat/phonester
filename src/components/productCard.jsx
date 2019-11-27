@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { add } from "../actions";
 
 const Card = styled.div`
   text-align: center;
@@ -117,7 +119,8 @@ export const Button = styled.button`
     `};
 `;
 
-const ProductCard = ({ product, onAdd }) => {
+const ProductCard = ({ product }) => {
+  const dispatch = useDispatch();
   return (
     <Card>
       <CardTitle>{product.title}</CardTitle>
@@ -127,7 +130,10 @@ const ProductCard = ({ product, onAdd }) => {
         </Link>
       </CardImage>
       <ProductPrice>Price: ${product.price}</ProductPrice>
-      <Button onClick={() => onAdd(product.id)} disabled={product.inCart}>
+      <Button
+        onClick={() => dispatch(add(product.id))}
+        disabled={product.inCart}
+      >
         {product.inCart ? "Added " : "Add to Cart "}
         <i className="fa fa-shopping-cart"></i>
       </Button>

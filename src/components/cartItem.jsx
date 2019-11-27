@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "./productCard";
+import { remove, increment, decrement } from "../actions";
+import { useDispatch } from "react-redux";
 
 const CheckoutProduct = styled.div`
   width: 500px;
@@ -49,7 +51,9 @@ const Badge = styled.span`
   font-weight: bold;
 `;
 
-const CartItem = ({ item, onRemove, onIncrement, onDecrement }) => {
+const CartItem = ({ item }) => {
+  const dispatch = useDispatch();
+
   return (
     <CheckoutProduct>
       <CheckoutProductImg>
@@ -61,13 +65,13 @@ const CartItem = ({ item, onRemove, onIncrement, onDecrement }) => {
         <InlineP>
           Quantity:<Badge>{item.count}</Badge>
         </InlineP>
-        <Button plus onClick={() => onIncrement(item.id)}>
+        <Button plus onClick={() => dispatch(increment(item.id))}>
           +
         </Button>
-        <Button minus onClick={() => onDecrement(item.id)}>
+        <Button minus onClick={() => dispatch(decrement(item.id))}>
           -
         </Button>
-        <Button danger onClick={() => onRemove(item.id)}>
+        <Button danger onClick={() => dispatch(remove(item.id))}>
           Remove
         </Button>
       </CheckoutProductInfo>
