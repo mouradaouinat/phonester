@@ -100,10 +100,10 @@ const BurgerLine = styled.div`
   }
 `;
 
-const Navbar = props => {
+const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const cart = useSelector(state => state.inCart);
-  const { logo, logoColor } = props;
+  const { logo } = useSelector(state => state.logo);
 
   function handleToggle() {
     setToggle(!toggle);
@@ -112,7 +112,7 @@ const Navbar = props => {
   return (
     <Nav>
       <Logo>
-        <Link to="/products" style={{ color: logoColor }}>
+        <Link to="/products" style={{ color: logo.logoColor }}>
           {logo}
         </Link>
       </Logo>

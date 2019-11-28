@@ -32,20 +32,3 @@ const productsReducer = (state = products, { type, payload }) => {
 };
 
 export default productsReducer;
-
-// handleSearch = query => {
-//   let currentList = [];
-//   let newList = [];
-//   if (query !== "") {
-//     currentList = this.state.products;
-//     newList = currentList.filter(item => {
-//       const regex = new RegExp(query, "ig");
-//       return item.title.match(regex) || item.company.match(regex);
-//     });
-//   } else {
-//     newList = getProducts();
-//   }
-//   this.setState({
-//     products: newList
-//   });
-// };

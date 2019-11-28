@@ -43,3 +43,17 @@ export const search = query => {
     payload: query
   };
 };
+
+export const logoNameChange = name => {
+  return {
+    type: "LOGO_CHANGE",
+    payload: name
+  };
+};
+
+export const logoColorChange = value => {
+  return {
+    type: "LOGO_COLOR_CHANGE",
+    payload: value
+  };
+};
