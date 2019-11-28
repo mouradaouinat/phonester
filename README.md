@@ -1,5 +1,5 @@
 :tada: This a Simple online Store made with React.
-You can visit the live version of the site by clicking on this link: <a href="https://www.phonester.netlify.com" target="_blank">Phonester</a>.
+You can visit the live version of the site by clicking on this link: <a href="https://phonester.netlify.com" target="_blank">Phonester</a>.
 
 :smiley: Or you can clone it to your own computer and hack and slash through it!
 
