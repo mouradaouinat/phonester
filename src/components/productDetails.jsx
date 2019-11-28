@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "./productCard";
 import { Wrapper } from "./products";
-import { storeProducts } from "../data";
+import { useSelector, useDispatch } from "react-redux";
+import { add } from "../actions";
 
 const ProductPage = styled.div`
   display: flex;
@@ -74,51 +75,44 @@ const ProductDescription = styled.div`
   }
 `;
 
-class ProductDetail extends Component {
-  state = {
-    product: {}
-  };
+const ProductDetail = props => {
+  let [product, setProduct] = useState({});
+  const products = useSelector(state => state.products);
 
-  componentDidMount() {
-    const product = storeProducts.find(
-      product => product.id === this.props.match.params.id
-    );
-    this.setState({ product });
-  }
+  useEffect(() => {
+    product = products.find(product => product.id === props.match.params.id);
+    setProduct(product);
+  }, [products]);
+  const dispatch = useDispatch();
 
-  render() {
-    const { onAdd } = this.props;
-    const { product } = this.state;
-
-    return (
-      <Wrapper>
-        <ProductPage>
-          <ProductImgBig>
-            <img src={product.img} alt={product.title} />
-          </ProductImgBig>
-          <ProductDescription>
-            <h1>{product.title}</h1>
-            <h2>Price: ${product.price}</h2>
-            <h2>Description:</h2>
-            <p>{product.info}</p>
-            <Button
-              onClick={() => onAdd(product.id)}
-              disabled={product.inCart}
-              style={{ marginRight: "10px" }}
-            >
-              {product.inCart ? "Added " : "Add to Cart "}{" "}
-              <i className="fa fa-shopping-cart"></i>
-            </Button>
-            <Button outline>
-              <Link to="/products" style={{ color: "#ffbd3e" }}>
-                Continue shopping
-              </Link>
-            </Button>
-          </ProductDescription>
-        </ProductPage>
-      </Wrapper>
-    );
-  }
-}
+  return (
+    <Wrapper>
+      <ProductPage>
+        <ProductImgBig>
+          <img src={product.img} alt={product.title} />
+        </ProductImgBig>
+        <ProductDescription>
+          <h1>{product.title}</h1>
+          <h2>Price: ${product.price}</h2>
+          <h2>Description:</h2>
+          <p>{product.info}</p>
+          <Button
+            onClick={() => dispatch(add(product.id))}
+            disabled={product.inCart}
+            style={{ marginRight: "10px" }}
+          >
+            {product.inCart ? "Added " : "Add to Cart "}{" "}
+            <i className="fa fa-shopping-cart"></i>
+          </Button>
+          <Button outline>
+            <Link to="/products" style={{ color: "#ffbd3e" }}>
+              Continue shopping
+            </Link>
+          </Button>
+        </ProductDescription>
+      </ProductPage>
+    </Wrapper>
+  );
+};
 
 export default ProductDetail;
