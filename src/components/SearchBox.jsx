@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { search } from "../actions";
 
 const Search = styled.div`
   display: inline-block;
@@ -15,7 +17,7 @@ const Search = styled.div`
 const SearchInput = styled.input`
   border: none;
   font-size: 16px;
-  display: inline;
+  display: inline-block;
   width: 100px;
 
   &:focus {
@@ -23,7 +25,15 @@ const SearchInput = styled.input`
   }
 `;
 
-const SearchBox = ({ onChange }) => {
+const SearchBox = () => {
+  const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
+
+  function handleChange(query) {
+    setQuery(query);
+    dispatch(search(query));
+  }
+
   return (
     <Search>
       <i className="fa fa-search"></i>{" "}
@@ -31,7 +41,8 @@ const SearchBox = ({ onChange }) => {
         type="text"
         name="search"
         placeholder="Search"
-        onChange={e => onChange(e.currentTarget.value)}
+        value={query}
+        onChange={e => handleChange(e.currentTarget.value)}
       />
     </Search>
   );

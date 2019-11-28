@@ -1,5 +1,4 @@
 import { getProducts, deleteProduct } from "../data";
-import _ from "lodash";
 let products = getProducts();
 
 const productsReducer = (state = products, { type, payload }) => {
@@ -14,8 +13,22 @@ const productsReducer = (state = products, { type, payload }) => {
       const filtered = state.filter(product => product.id !== payload);
       deleteProduct(payload);
       return [...filtered];
+    case "SEARCH_FOR_PRODUCT":
+      let currentList = [];
+      let newList = [];
+      if (payload !== "") {
+        currentList = [...state];
+        newList = currentList.filter(item => {
+          const regex = new RegExp(payload, "ig");
+          return item.title.match(regex) || item.company.match(regex);
+        });
+        return [...newList];
+      } else {
+        newList = getProducts();
+      }
+      return [...newList];
     default:
-      return state;
+      return [...state];
   }
 };
 

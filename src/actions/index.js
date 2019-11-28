@@ -36,3 +36,10 @@ export const deleteFromDB = id => {
     payload: id
   };
 };
+
+export const search = query => {
+  return {
+    type: "SEARCH_FOR_PRODUCT",
+    payload: query
+  };
+};

@@ -26,7 +26,6 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar
-          onSearch={this.handleSearch}
           logo={this.state.logo}
           logoColor={this.state.logoColor}
         ></Navbar>

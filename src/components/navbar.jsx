@@ -103,7 +103,7 @@ const BurgerLine = styled.div`
 const Navbar = props => {
   const [toggle, setToggle] = useState(false);
   const cart = useSelector(state => state.inCart);
-  const { onSearch, searchQuery, logo, logoColor } = props;
+  const { logo, logoColor } = props;
 
   function handleToggle() {
     setToggle(!toggle);
@@ -122,7 +122,7 @@ const Navbar = props => {
           <Link to="/admin">Admin</Link>
         </ListItems>
         <ListItems>
-          <SearchBox value={searchQuery} onChange={onSearch}></SearchBox>
+          <SearchBox></SearchBox>
         </ListItems>
         <ListItems>
           <Link to="/products">Products</Link>
