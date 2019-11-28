@@ -30,10 +30,9 @@ export const clear = {
   type: "CLEAR_CART"
 };
 
-export const sort = {
-  type: "SORT_PRODUCTS"
-};
-
-const search = {
-  type: "SEARCH_PRODUCTS"
+export const deleteFromDB = id => {
+  return {
+    type: "DELETE_PRODUCT",
+    payload: id
+  };
 };

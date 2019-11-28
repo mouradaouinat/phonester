@@ -1,8 +1,8 @@
-import { getProducts } from "../data";
+import { getProducts, deleteProduct } from "../data";
 import _ from "lodash";
 let products = getProducts();
 
-const productsReducer = (state = products, { type }) => {
+const productsReducer = (state = products, { type, payload }) => {
   switch (type) {
     case "ADD_TO_CART":
       return [...state];
@@ -10,6 +10,10 @@ const productsReducer = (state = products, { type }) => {
       return [...state];
     case "SORT_PRODUCTS":
       return [...state];
+    case "DELETE_PRODUCT":
+      const filtered = state.filter(product => product.id !== payload);
+      deleteProduct(payload);
+      return [...filtered];
     default:
       return state;
   }
