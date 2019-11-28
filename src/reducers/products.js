@@ -22,11 +22,10 @@ const productsReducer = (state = products, { type, payload }) => {
           const regex = new RegExp(payload, "ig");
           return item.title.match(regex) || item.company.match(regex);
         });
-        return [...newList];
       } else {
         newList = getProducts();
       }
-      return [...newList];
+      return (state = [...newList]);
     default:
       return [...state];
   }
