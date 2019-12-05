@@ -102,6 +102,7 @@ const BurgerLine = styled.div`
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const auth = useSelector(state => state.auth);
   const cart = useSelector(state => state.inCart);
   const { logo } = useSelector(state => state.logo);
 
@@ -118,9 +119,20 @@ const Navbar = () => {
       </Logo>
 
       <NavElements open={toggle}>
-        <ListItems>
-          <Link to="/admin">Admin</Link>
-        </ListItems>
+        {auth ? (
+          <ListItems>
+            <Link to="/admin">Admin</Link>
+          </ListItems>
+        ) : (
+          <>
+            <ListItems>
+              <Link to="/login">Login</Link>{" "}
+            </ListItems>
+            <ListItems>
+              <Link to="/regester">Regester</Link>
+            </ListItems>
+          </>
+        )}
         <ListItems>
           <SearchBox></SearchBox>
         </ListItems>

@@ -7,6 +7,9 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Cart from "./components/cart";
 import ProductDetail from "./components/productDetails";
 import Admin from "./components/admin";
+import Login from "./components/login";
+import Regester from "./components/regester";
+
 function App() {
   return (
     <div className="App">
@@ -14,6 +17,8 @@ function App() {
       <Switch>
         <Redirect exact from="/admin" to="/admin/home"></Redirect>
         <Route path="/admin/:topic" component={Admin}></Route>
+        <Route path="/login" component={Login}></Route>
+        <Route path="/regester" component={Regester}></Route>
         <Redirect exact from="/" to="/products" />
         <Route path="/products" component={Products}></Route>
         <Route exact path="/cart" component={Cart}></Route>

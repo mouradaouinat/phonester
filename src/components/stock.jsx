@@ -23,7 +23,7 @@ const ProductsTable = styled.table`
   }
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   border-radius: 5px;
   background-color: #551ccf;
   color: #fff;
