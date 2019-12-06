@@ -1,11 +1,11 @@
-const initialState = false;
-
-const loginReducer = (state = initialState, { type, payload }) => {
+const loginReducer = (state = true, { type }) => {
   switch (type) {
     case "LOG_IN":
-      return (state = true);
+      state = true;
+      return state;
     case "LOG_OUT":
-      return (state = false);
+      state = false;
+      return state;
     default:
       return state;
   }

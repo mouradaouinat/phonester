@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import SearchBox from "./SearchBox";
-import { useSelector } from "react-redux";
+import { logOut } from "../actions";
+import { useSelector, useDispatch } from "react-redux";
 
 const Logo = styled.div`
   font-family: "Maven Pro", sans-serif;
@@ -105,6 +106,7 @@ const Navbar = () => {
   const auth = useSelector(state => state.auth);
   const cart = useSelector(state => state.inCart);
   const { logo } = useSelector(state => state.logo);
+  const dispatch = useDispatch();
 
   function handleToggle() {
     setToggle(!toggle);
@@ -120,9 +122,14 @@ const Navbar = () => {
 
       <NavElements open={toggle}>
         {auth ? (
-          <ListItems>
-            <Link to="/admin">Admin</Link>
-          </ListItems>
+          <>
+            <ListItems>
+              <Link to="/admin">Admin</Link>
+            </ListItems>
+            <ListItems>
+              <a onClick={() => dispatch(logOut())}>Sign Out</a>
+            </ListItems>
+          </>
         ) : (
           <>
             <ListItems>

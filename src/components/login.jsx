@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { login } from "../utils/loginUtil";
-import { logIn } from "../actions";
-import { useDispatch } from "react-redux";
+import { logIn, logOut } from "../actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const Button = styled.button`
   border: none;
@@ -52,7 +52,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const auth = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
   async function handleSubmit(e) {
@@ -62,7 +62,7 @@ const Login = () => {
 
     try {
       await login({ username, password });
-      dispatch(logIn);
+      dispatch(logIn());
     } catch (err) {
       setError(err.message);
     }
@@ -74,9 +74,9 @@ const Login = () => {
     <LoginCard>
       <Logo>Phonester</Logo>
       <div style={{ background: "red" }}>{error}</div>
-      <div>{isLoggedIn ? "welcome" : "Please Login"}</div>
-      {isLoggedIn ? (
-        <Button onClick={() => setIsLoggedIn(false)}>Sign out</Button>
+      <div>{auth ? "welcome" : "Please Login"}</div>
+      {auth ? (
+        <Button onClick={() => dispatch(logOut())}>Sign out</Button>
       ) : (
         <Form onSubmit={handleSubmit}>
           <div>
